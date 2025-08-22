@@ -10,3 +10,4 @@ data class GmailConfig(
     var applicationName: String = "",
     var fromEmail: String = ""
 )
+
