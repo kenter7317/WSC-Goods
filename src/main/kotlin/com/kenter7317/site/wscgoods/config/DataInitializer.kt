@@ -13,47 +13,90 @@ class DataInitializer(
 ) : CommandLineRunner {
 
     override fun run(vararg args: String?) {
-        // 샘플 굿즈 데이터 추가
+        // DB에 굿즈가 없을 때만 샘플 데이터 추가
         if (goodsRepository.count() == 0L) {
             val sampleGoods = listOf(
                 Goods(
-                    name = "WSC 티셔츠",
-                    description = "고품질 면 100% WSC 로고 티셔츠",
-                    stock = 50
+                    name = "WSC 클립펜",
+                    description = "WSC 로고 클립펜 (블랙x2, 베이지x2, 민트x2)",
+                    stock = 6
                 ),
                 Goods(
-                    name = "WSC 머그컵",
-                    description = "WSC 로고가 새겨진 세라믹 머그컵",
-                    stock = 30
+                    name = "JCJS games 투명 아크릴 키링",
+                    description = "JCJS games 투명 아크릴 키링",
+                    stock = 2
                 ),
                 Goods(
-                    name = "WSC 에코백",
-                    description = "친환경 캔버스 소재의 WSC 에코백",
-                    stock = 25
+                    name = "실 제본 무지노트",
+                    description = "실 제본 무지노트",
+                    stock = 6
                 ),
                 Goods(
-                    name = "WSC 스티커팩",
-                    description = "다양한 WSC 스티커 세트",
-                    stock = 100
+                    name = "웨루 그림 스티커",
+                    description = "웨루 그림 스티커",
+                    stock = 6
                 ),
                 Goods(
-                    name = "WSC 노트북",
-                    description = "WSC 로고가 인쇄된 고급 노트북",
-                    stock = 20
+                    name = "WSC 북마크",
+                    description = "WSC 북마크",
+                    stock = 4
+                ),
+                Goods(
+                    name = "웨루 키캡 R4",
+                    description = "웨루 키캡 R4",
+                    stock = 3
+                ),
+                Goods(
+                    name = "에폭시 사각 스마트톡",
+                    description = "에폭시 사각 스마트톡 (개발이장난이냐x1, 머리쥐뜯는웨루x1)",
+                    stock = 2
+                ),
+                Goods(
+                    name = "헛소리 채널 정사각형 마우스패드",
+                    description = "헛소리 채널 정사각형 마우스패드",
+                    stock = 2
+                ),
+                Goods(
+                    name = "15.6인치 노트북 파우치",
+                    description = "15.6인치 노트북 파우치",
+                    stock = 5
+                ),
+                Goods(
+                    name = "파우치",
+                    description = "파우치",
+                    stock = 5
+                ),
+                Goods(
+                    name = "머그컵",
+                    description = "머그컵",
+                    stock = 5
+                ),
+                Goods(
+                    name = "유니티 크록스 블랙",
+                    description = "유니티 크록스 블랙",
+                    stock = 5
+                ),
+                Goods(
+                    name = "에코백",
+                    description = "에코백",
+                    stock = 5
                 )
             )
 
             goodsRepository.saveAll(sampleGoods)
-            println("샘플 굿즈 데이터가 초기화되었습니다.")
+            println("WSC 굿즈 데이터가 DB에 초기화되었습니다. (총 ${sampleGoods.size}개)")
+        } else {
+            println("기존 굿즈 데이터가 DB에 존재합니다. (총 ${goodsRepository.count()}개)")
         }
 
         // 샘플 허용 이메일 추가 (테스트용)
         val sampleEmails = listOf(
             "test@example.com",
             "user@test.com",
-            "admin@wsc.com"
+            "admin@wsc.com",
+            "kenter7317@gmail.com"
         )
         emailFilterService.updateAllowedEmails(sampleEmails)
-        println("샘플 허용 이메일이 설정되었습니다: $sampleEmails")
+        println("허용된 이메일 목록이 설정되었습니다: $sampleEmails")
     }
 }
